@@ -69,6 +69,7 @@ Skill 会先检查工作区和模板，只在缺少阻塞信息时集中提问�
 ```bash
 python scripts/code_shot.py -f app.py -l 10-50 -o screenshots/app.png --json
 python scripts/term_shot.py -c "python app.py" --cwd . --columns 100 --transcript screenshots/run.txt -o screenshots/run.png --json
+python scripts/auto_shot.py -c "build/app.exe" --cwd . -o screenshots/run.png --columns 100 --json
 python scripts/report-shot.py report-config.json --json
 ```
 
@@ -79,6 +80,7 @@ python scripts/report-shot.py report-config.json --json
 ```bash
 python scripts/code_shot.py --help
 python scripts/term_shot.py --help
+python scripts/auto_shot.py --help
 python scripts/report-shot.py --help
 ```
 

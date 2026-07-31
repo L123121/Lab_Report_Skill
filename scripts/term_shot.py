@@ -783,7 +783,13 @@ def build_parser() -> argparse.ArgumentParser:
             "Examples:\n"
             "  term-shot -c 'python experiment.py'\n"
             "  term-shot -c 'pytest -q' --columns 110 --theme dark\n"
-            "  echo 'output' | term-shot --stdin"
+            "  echo 'output' | term-shot --stdin\n"
+            "\n"
+            "Note: on Windows, the default ConPTY path decodes through the\n"
+            "console code page (usually GBK/cp936). If a program prints\n"
+            "UTF-8 Chinese and the screenshot shows mojibake, add\n"
+            "  --capture-mode pipe\n"
+            "or prefix the command with 'chcp 65001 >nul && '."
         ),
     )
     parser.add_argument("-c", "--command", help="Command to execute")
