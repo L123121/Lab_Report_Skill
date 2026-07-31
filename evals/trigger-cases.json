@@ -1,0 +1,80 @@
+{
+  "skill_name": "computer-lab-report",
+  "cases": [
+    {
+      "prompt": "按这个 Word 模板帮我补全算法实验报告，代码和测试数据在附件里。",
+      "should_trigger": true,
+      "reason": "Existing computer-course lab report template"
+    },
+    {
+      "prompt": "根据我的 Java 代码写实验报告，加入代码截图和控制台结果。",
+      "should_trigger": true,
+      "reason": "New programming lab report with report screenshots"
+    },
+    {
+      "prompt": "把数据库实验报告里的 SQL 和执行结果整理到 docx。",
+      "should_trigger": true,
+      "reason": "Database lab report with DOCX delivery"
+    },
+    {
+      "prompt": "给 README 里的 Python 示例做一张好看的代码截图。",
+      "should_trigger": false,
+      "reason": "Standalone screenshot unrelated to a lab report"
+    },
+    {
+      "prompt": "帮我写一份市场调研报告并导出 Word。",
+      "should_trigger": false,
+      "reason": "Generic non-computing report"
+    },
+    {
+      "prompt": "解释一下这段 C++ 代码为什么崩溃。",
+      "should_trigger": false,
+      "reason": "Generic coding help without a report deliverable"
+    },
+    {
+      "prompt": "D:\\大作业模板v2.docx，你来测试一下这个程序设计实训报告模板。",
+      "should_trigger": true,
+      "reason": "Computing major-assignment and programming-training template"
+    },
+    {
+      "prompt": "实验报告图片还行，只优化文字排版和文字质量，保持原来的 Word 模板。",
+      "should_trigger": true,
+      "reason": "Computing lab-report prose revision while preserving existing DOCX formatting"
+    },
+    {
+      "prompt": "帮我填写这个实验报告 DOCX，但原有格式一处都不能改。",
+      "should_trigger": true,
+      "reason": "Existing computer lab report with strict DOCX format preservation"
+    },
+    {
+      "prompt": "计算机网络实验报告写得全是套话，请结合抓包结果重写分析，但 Word 格式不要动。",
+      "should_trigger": true,
+      "reason": "Computing lab-report prose revision with verified evidence and strict format preservation"
+    },
+    {
+      "prompt": "把课程设计里的四道 OJ 题按模板整理成大作业报告，代码和提交结果都在项目中。",
+      "should_trigger": true,
+      "reason": "Computing course-project report with multi-problem OJ evidence"
+    },
+    {
+      "prompt": "帮我把这份普通 Word 合同的字体和行距统一一下。",
+      "should_trigger": false,
+      "reason": "Generic Word formatting unrelated to a computing report"
+    },
+    {
+      "prompt": "根据测量数据写一份大学物理实验报告并导出 DOCX。",
+      "should_trigger": false,
+      "reason": "Non-computing laboratory report"
+    },
+    {
+      "prompt": "把这个 PDF 原样转换成 Word。",
+      "should_trigger": false,
+      "reason": "Generic PDF-to-Word conversion without a computing report"
+    },
+    {
+      "prompt": "运行 main.cpp 并给我一张终端截图，不需要报告。",
+      "should_trigger": false,
+      "reason": "Standalone execution screenshot without report context"
+    }
+  ]
+}

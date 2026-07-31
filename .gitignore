@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+*.png
+!examples/*.png
+*.jpg
+*.jpeg
+*.gif
+*.log
+.env
+.env.*
+dist/
+.package-staging/
+test-runs/
+# eval 运行产物（保留 evals.json / trigger-cases.json 等配置）
+evals/runs/
+evals/workbench/
+evals/diagnose/
+evals/eval-review.html

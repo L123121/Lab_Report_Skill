@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# code-shot: 终端风格的代码截图工具。
+# 解析脚本的真实路径（处理符号链接）。
+if command -v realpath &>/dev/null; then
+    SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+elif command -v greadlink &>/dev/null && greadlink -f "$0" &>/dev/null; then
+    SCRIPT_DIR="$(dirname "$(greadlink -f "$0")")"
+else
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+fi
+REPO_DIR="$(dirname "$SCRIPT_DIR")"
+if [ -x "$REPO_DIR/.venv/bin/python3" ]; then
+    exec "$REPO_DIR/.venv/bin/python3" "$SCRIPT_DIR/code_shot.py" "$@"
+else
+    exec python3 "$SCRIPT_DIR/code_shot.py" "$@"
+fi
