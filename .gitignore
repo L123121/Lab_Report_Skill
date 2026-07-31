@@ -10,7 +10,8 @@ __pycache__/
 *.log
 .env
 .env.*
-dist/
+dist/*
+!dist/computer-lab-report.skill
 .package-staging/
 test-runs/
 # eval 运行产物（保留 evals.json / trigger-cases.json 等配置）
