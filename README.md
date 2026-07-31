@@ -14,6 +14,20 @@
 
 > 仓库内置截图工具、DOCX 格式保护器和报告工作流。DOCX 内容编辑仍由宿主环境完成，但编辑前后的格式基线和验证由 `scripts/docx_format_guard.py` 独立执行。
 
+## 效果预览
+
+代码截图（浅色，含中文注释）：
+
+![代码截图-浅色](examples/code-hello.png)
+
+代码截图（深色）：
+
+![代码截图-深色](examples/code-hello-dark.png)
+
+终端运行截图：
+
+![终端截图](examples/term-demo.png)
+
 ## 目录
 
 ```text
