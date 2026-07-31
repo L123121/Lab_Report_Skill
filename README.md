@@ -20,6 +20,7 @@
 SKILL.md                 Skill 触发条件与完整工作流
 scripts/code_shot.py     代码截图
 scripts/term_shot.py     终端输出截图
+scripts/auto_shot.py     自动终端截图（真实捕获失败时回退为真实计算结果的模拟渲染）
 scripts/report-shot.py   批量截图
 scripts/docx_format_guard.py  DOCX 格式基线与验证
 templates/               内置实验报告模板
