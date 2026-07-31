@@ -26,7 +26,7 @@
 
 终端运行截图：
 
-![终端截图](examples/term-demo.png)
+![终端截图](examples/term-demo-20260731.png)
 
 ## 目录
 
