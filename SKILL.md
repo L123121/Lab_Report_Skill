@@ -1,12 +1,12 @@
 ---
 name: computer-lab-report
-description: "Create, complete, and format computer-science course lab, programming-training, course-project, and major-assignment reports from Markdown or DOCX templates, source files, and run evidence. Use when the user asks to 写、生成、补全、填写、整理或排版计算机实验报告、实训报告、上机报告、课程设计报告或大作业报告，保留现有模板，插入代码截图或终端运行截图，或交付 .docx。Also use for programming, data-structure, algorithm, database, operating-system, network, OJ training, and similar computing coursework. Do not use for generic business reports, non-computing assignments, or standalone screenshots unrelated to a computing report."
+description: "Fill, complete, and polish an existing computer-course lab/experiment-report template (.docx or .doc) with real content and screenshots while preserving the original formatting exactly. Use when the user provides a Word template (实验报告、实训报告、上机报告、课程设计报告或大作业报告模板) and asks to 填写、补全、完成、整理或排版实验报告内容，插入代码截图或终端运行截图，保持原有格式不变，或交付 .docx。A report template is a required input; do not use when no template is provided, or for generic business reports, non-computing assignments, or standalone screenshots unrelated to a computing report."
 compatibility: "Requires Python 3.8+. Screenshots use Pillow, Pygments, pyte, and wcwidth. Windows ConPTY capture uses pywinpty on Python 3.9+ and reports pipe fallback when unavailable. The DOCX format guard uses only the standard library; DOCX content editing requires a host document tool. Pandoc is optional."
 ---
 
 # Computer Lab Report
 
-Create a trustworthy computer-course lab report from the user's real files and actual execution results. Preserve an existing template whenever one is provided, minimize follow-up questions, and never invent code behavior or terminal output.
+Fill a user-provided computer-course lab-report template with trustworthy content and real screenshots. The template (`.docx` or `.doc`) is a required input: preserve its original formatting exactly, minimize follow-up questions, and never invent code behavior or terminal output.
 ## Existing DOCX format preservation — highest priority
 
 When the input is an existing `.docx`, treat all original formatting as immutable. This rule overrides typography improvement, beautification, normalization, and layout suggestions elsewhere in this skill.
@@ -26,15 +26,13 @@ When the input is an existing `.docx`, treat all original formatting as immutabl
 - Additional content may naturally reflow later pages. Never promise identical pagination when the inserted content is longer; if exact pagination is required, stop before exceeding the existing placeholder capacity.
 - If exact format preservation cannot be verified with the available toolchain, do not claim success. Return the completed content separately and explain the limitation.
 
-## Choose the mode
+## The single scenario
 
-Select exactly one primary mode before editing:
+This skill has exactly one scenario: the user provides an existing computer-course lab-report template (`.docx`, or legacy `.doc` converted first) and asks to complete the report's content and screenshots without breaking the original formatting.
 
-1. **Fill an existing template** — The user provides `.docx` or `.md`. For DOCX, treat all original formatting as immutable and write to a new output file. For Markdown, preserve its structure unless the user requests changes.
-2. **Generate a new report** — No template is provided. Start from the closest file in `templates/`, then adapt only the sections needed by the assignment.
-3. **Prepare report assets** — The user only needs code or terminal screenshots for a computer lab report. Generate the assets and a short insertion manifest; do not create a full report unless requested.
+1. **Fill an existing template** — The user provides a `.docx` (or `.doc`) report template. Treat all original formatting as immutable and write to a new output file.
 
-This skill is not the default for generic coding help, generic Word editing, or decorative screenshots.
+There are no other modes: do not generate a report without a template, do not produce standalone screenshot assets without a report, and do not treat this skill as generic Word editing.
 
 ## Resolve bundled paths
 
@@ -176,17 +174,9 @@ Writing rules:
 
 ### 6. Edit the requested document format
 
-#### Markdown input
+#### Legacy .doc input
 
-Work on an output copy. Replace recognized placeholders with completed text or image references while preserving unrelated content, tables, and heading levels. Use relative image paths that remain valid from the output file.
-
-If DOCX delivery is required, use an available document-conversion or DOCX-editing tool. Pandoc is optional, not assumed:
-
-```powershell
-pandoc <completed.md> -o <report.docx> --reference-doc=<style.docx>
-```
-
-Omit `--reference-doc` when no reference document exists.
+If the user provides a legacy binary `.doc` template, convert it to `.docx` first with an available tool (e.g. LibreOffice: `soffice --headless --convert-to docx <input.doc>`), then run the DOCX flow below on the converted file. State the conversion in the handoff; the format guard can only verify the `.docx` package.
 
 #### DOCX input
 
@@ -216,23 +206,6 @@ For existing DOCX files:
 - Keep a list of every package part and XML node intentionally changed.
 
 Do not invent helper paths such as `ooxml/scripts/unpack.py`, and do not claim format preservation if the active toolchain cannot prove it.
-
-#### Typography for new documents only
-
-The following typography rules apply only when creating a new DOCX or converting a new Markdown report without an existing DOCX template. They must never be applied to an uploaded DOCX template.
-
-- **Body text** — 宋体, 12 pt, justified, 1.5-line spacing, first-line indent of 2 Chinese characters.
-- **Major headings** — 黑体, 16 pt, bold, left aligned, with stable numbering and `keepNext`.
-- **Minor headings and field labels** — 黑体, 12–14 pt, bold; keep explanatory text regular.
-- **Captions** — centered, concise, consistently numbered, and kept with the corresponding image or table.
-- **Tables** — coherent widths and borders, centered headers, vertically centered cells, and controlled row splitting.
-- **Images** — preserve aspect ratio, fit within page margins, center consistently, and use restrained spacing.
-- **Repeated problem sections** — keep headings with following content and avoid page breaks that create large blank areas.
-
-For new documents, use paragraph properties such as `keepNext`, `keepLines`, `pageBreakBefore`, and table `cantSplit` instead of repeated empty paragraphs. Keep captions, screenshots, analysis, and problem identifiers in the same logical section.
-#### No template
-
-Choose `templates/programming-experiment.md` for general programming work and `templates/algorithm-experiment.md` for algorithm/data-structure work. Remove unused sample sections rather than leaving irrelevant boilerplate.
 
 ### 7. Validate the deliverable
 
@@ -271,9 +244,9 @@ Return a concise handoff containing:
 ## Trigger examples
 
 - “按这个 Word 模板帮我补全数据结构实验报告，代码在 `src/graph.cpp`。”
-- “根据课程要求和运行结果生成一份 Python 实验报告，要有代码截图和终端截图。”
 - “把这些代码截图插到我的实验报告里，保持原来的 Word 格式。”
-- “我没有模板，用内置模板写一份算法实验报告并导出 DOCX。”
+- “帮我填写这份实验报告 docx，格式一处都不能改。”
 - 按这个大作业模板填写程序设计实训报告，至少分析 4 道 OJ 题。
+- “这是一份 .doc 格式的实验报告模板，帮我完成内容和截图。”
 
-Do not trigger for requests such as “给 README 截一张代码图” or “帮我写一份市场调研报告” unless a computer-course lab report is also part of the request.
+Do not trigger for requests such as “给 README 截一张代码图”, “帮我写一份市场调研报告”, or “根据代码生成一份实验报告（没有模板）” unless the user provides a computer-course lab-report template.

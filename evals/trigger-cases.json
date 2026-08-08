@@ -8,13 +8,13 @@
     },
     {
       "prompt": "根据我的 Java 代码写实验报告，加入代码截图和控制台结果。",
-      "should_trigger": true,
-      "reason": "New programming lab report with report screenshots"
+      "should_trigger": false,
+      "reason": "No report template provided"
     },
     {
-      "prompt": "把数据库实验报告里的 SQL 和执行结果整理到 docx。",
+      "prompt": "按这个数据库实验报告模板，把 SQL 和执行结果整理到 docx。",
       "should_trigger": true,
-      "reason": "Database lab report with DOCX delivery"
+      "reason": "Database lab report template with DOCX delivery"
     },
     {
       "prompt": "给 README 里的 Python 示例做一张好看的代码截图。",
@@ -75,6 +75,16 @@
       "prompt": "运行 main.cpp 并给我一张终端截图，不需要报告。",
       "should_trigger": false,
       "reason": "Standalone execution screenshot without report context"
+    },
+    {
+      "prompt": "这是一份 .doc 格式的操作系统实验报告模板，帮我完成内容和截图。",
+      "should_trigger": true,
+      "reason": "Legacy .doc computer-course lab report template"
+    },
+    {
+      "prompt": "根据 main.py 和课程要求生成一份 Python 实验报告，导出 DOCX，没有模板。",
+      "should_trigger": false,
+      "reason": "No report template provided"
     }
   ]
 }

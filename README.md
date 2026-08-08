@@ -4,13 +4,13 @@
 
 ## 能做什么
 
-- 填充已有 Markdown 或 Word 实验报告模板
-- 没有模板时使用内置模板生成报告草稿
+- 填充已有 Word（.docx/.doc）实验报告模板，完成报告内容与截图
 - 读取真实代码并基于实际执行结果撰写分析
 - 生成带语法高亮的代码截图和终端输出截图
 - 在交付前检查未填占位符、截图路径和结果一致性
 - 优化实验分析、结果解释、调试复盘和总结的文字质量
-- 填写已有 Word 模板时锁定原有格式，只修改目标内容；新建文档时才应用排版规范
+- 锁定模板原有格式，只修改目标内容；不覆盖原文件，交付新 .docx
+- 旧版 .doc 模板先转换为 .docx 再按同一流程填写
 
 > 仓库内置截图工具、DOCX 格式保护器和报告工作流。DOCX 内容编辑仍由宿主环境完成，但编辑前后的格式基线和验证由 `scripts/docx_format_guard.py` 独立执行。
 
@@ -37,7 +37,6 @@ scripts/term_shot.py     终端输出截图
 scripts/auto_shot.py     自动终端截图（真实捕获失败时回退为真实计算结果的模拟渲染）
 scripts/report-shot.py   批量截图
 scripts/docx_format_guard.py  DOCX 格式基线与验证
-templates/               内置实验报告模板
 references/              文字质量参考与 OMML 公式插入指引
 evals/evals.json         核心行为评测用例
 ```
@@ -70,11 +69,11 @@ pip install -r requirements.txt
 
 > 按这个 Word 模板补全数据结构实验报告。代码在 `src/graph.cpp`，运行命令是 `./graph_test`，需要代码截图和运行截图。
 
-> 我没有模板，请根据 `main.py` 和课程要求生成 Python 实验报告，并导出 DOCX。
+> 帮我填写这份实验报告 docx，格式一处都不能改，内容要真实详细。
 
-> 只帮我生成实验报告要用的代码截图和终端截图，不用写全文。
+> 这是一份 .doc 格式的大作业模板，帮我完成内容和截图。
 
-Skill 会先检查工作区和模板，只在缺少阻塞信息时集中提问，不会编造运行结果或性能数据。
+Skill 会先检查工作区和模板，只在缺少阻塞信息时集中提问，不会编造运行结果或性能数据。使用前提是用户提供 .docx 或 .doc 实验报告模板；没有模板时不适用。
 
 ## 截图工具
 
@@ -118,15 +117,6 @@ python scripts/docx_format_guard.py verify format-baseline.json output.docx --or
 ```
 
 验证器会检查原文件是否被覆盖、受保护部件是否变化、原有格式节点是否被修改，以及新增格式节点是否来自原文档中的同类格式。验证返回非零退出码时，不得交付 DOCX。
-
-## 内置模板
-
-| 模板 | 文件 | 适用场景 |
-|---|---|---|
-| 编程语言类 | `templates/programming-experiment.md` | Python、Java、C/C++ 等程序设计实验 |
-| 算法/数据结构类 | `templates/algorithm-experiment.md` | 排序、树、图、查找和复杂度分析 |
-
-内置模板是起点，不要求原样保留所有示例小节。Skill 会删除与实际作业无关的模板内容。
 
 ## 设计原则
 
