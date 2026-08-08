@@ -51,6 +51,7 @@ python "<skill-root>/scripts/docx_format_guard.py" --help
 Use the platform's Python executable or the skill's virtual environment when present.
 
 Load `<skill-root>/references/writing-quality.md` only when drafting or revising report prose.
+Load `<skill-root>/references/omml-formulas.md` only when the report requires native Word math formulas (complexity expressions, algorithm derivations, or numeric-computation experiments).
 
 ## Workflow
 
@@ -210,6 +211,7 @@ For existing DOCX files:
 - Treat text-only replacement inside an existing `<w:t>` as the default safe operation. Structural insertions require an explicit content need and an exact local formatting donor; if no equivalent donor exists, stop and report the limitation instead of approximating the style.
 - Fill existing table cells without changing table geometry, borders, shading, row properties, or cell properties.
 - Insert images only at explicit placeholders or approved semantic anchors. Preserve aspect ratio and use the placeholder's existing size/alignment behavior; do not restyle surrounding content.
+- To insert native Word math formulas (complexity, algorithm derivation, numeric experiments), consult `<skill-root>/references/omml-formulas.md` and append `<m:oMath>` nodes only; keep protected parts and existing runs untouched.
 - Do not remove empty paragraphs unless the paragraph itself is the explicit placeholder being replaced.
 - Keep a list of every package part and XML node intentionally changed.
 

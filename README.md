@@ -38,7 +38,7 @@ scripts/auto_shot.py     自动终端截图（真实捕获失败时回退为真�
 scripts/report-shot.py   批量截图
 scripts/docx_format_guard.py  DOCX 格式基线与验证
 templates/               内置实验报告模板
-references/              文字质量正反示例与检查标准
+references/              文字质量参考与 OMML 公式插入指引
 evals/evals.json         核心行为评测用例
 ```
 
